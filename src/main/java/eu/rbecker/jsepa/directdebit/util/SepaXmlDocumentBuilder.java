@@ -5,21 +5,23 @@
  */
 package eu.rbecker.jsepa.directdebit.util;
 
-import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.BranchAndFinancialInstitutionIdentification4;
-import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.FinancialInstitutionIdentification7;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
+
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.BranchAndFinancialInstitutionIdentification4;
+import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.FinancialInstitutionIdentification7;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
 
 /**
  *
@@ -77,10 +79,10 @@ public abstract class SepaXmlDocumentBuilder implements Serializable {
 
     protected static void marshal(String contextName, JAXBElement jaxbDoc, StringWriter resultWriter) {
         try {
-        javax.xml.bind.JAXBContext jaxbCtx = javax.xml.bind.JAXBContext.newInstance(contextName);
-        javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
-        marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8"); //NOI18N
-        marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        JAXBContext jaxbCtx = JAXBContext.newInstance(contextName);
+        Marshaller marshaller = jaxbCtx.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8"); //NOI18N
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(jaxbDoc, resultWriter);
         } catch (JAXBException e) {
             // If something crashes here it needs to be fixed in the library, not by the user.

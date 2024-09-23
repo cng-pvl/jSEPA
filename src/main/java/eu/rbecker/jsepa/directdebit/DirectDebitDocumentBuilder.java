@@ -3,6 +3,14 @@
  */
 package eu.rbecker.jsepa.directdebit;
 
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import eu.rbecker.jsepa.directdebit.util.SepaXmlDocumentBuilder;
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.AccountIdentification4Choice;
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.ActiveOrHistoricCurrencyAndAmount;
@@ -27,13 +35,6 @@ import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.PersonIdentificat
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.PersonIdentificationSchemeName1Choice;
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.RemittanceInformation5;
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.ServiceLevel8Choice;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -130,7 +131,7 @@ public class DirectDebitDocumentBuilder extends SepaXmlDocumentBuilder {
 
         // currency and amount
         result.setInstdAmt(new ActiveOrHistoricCurrencyAndAmount());
-        result.getInstdAmt().setCcy("EUR");
+        result.getInstdAmt().setCcy(p.getPaymentCurrency());
         result.getInstdAmt().setValue(p.getPaymentSum());
 
         // transaction information

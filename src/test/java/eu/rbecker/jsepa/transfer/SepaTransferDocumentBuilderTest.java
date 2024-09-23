@@ -5,11 +5,15 @@
  */
 package eu.rbecker.jsepa.transfer;
 
-import eu.rbecker.jsepa.directdebit.util.SepaValidationException;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.math.BigDecimal;
 import java.util.Calendar;
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import org.junit.jupiter.api.Test;
+
+import eu.rbecker.jsepa.directdebit.util.SepaValidationException;
 
 /**
  *

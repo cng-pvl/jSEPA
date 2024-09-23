@@ -5,15 +5,16 @@
  */
 package eu.rbecker.jsepa.sanitization;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  *
  * @author Robert Becker <robert at rbecker.eu>
  */
 public class SepaStringSanitizerTest {
-    
+
     public SepaStringSanitizerTest() {
     }
 
@@ -21,7 +22,7 @@ public class SepaStringSanitizerTest {
     /**
      * Test of sanitze method, of class SepaStringSanitizer.
      */
-    @org.junit.Test
+    @Test
     public void testSanitze() {
         assertEquals("abcd", SepaStringSanitizer.of("abcd").sanitze());
         assertEquals(" bcd", SepaStringSanitizer.of("äbcd").sanitze());
@@ -31,7 +32,7 @@ public class SepaStringSanitizerTest {
         String allowedChars = "a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9 / - ? : ( ) . , + &, *, $, %";
 //        String allowedChars = "a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9 / - ? : ( ) . , + Ä, ä, Ö, ö, Ü, ü, ß, &, *, $, %";
         assertEquals(allowedChars, SepaStringSanitizer.of(allowedChars).sanitze());
-        
+
     }
 
     /**
@@ -41,5 +42,5 @@ public class SepaStringSanitizerTest {
     public void testWithMaxLength() {
         assertEquals("abc", SepaStringSanitizer.of("abcd").withMaxLength(3).sanitze());
     }
-    
+
 }

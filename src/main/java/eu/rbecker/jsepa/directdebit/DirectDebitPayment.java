@@ -3,11 +3,12 @@
  */
 package eu.rbecker.jsepa.directdebit;
 
-import eu.rbecker.jsepa.directdebit.util.SepaValidationException;
-import eu.rbecker.jsepa.sanitization.SepaStringSanitizer;
-import eu.rbecker.jsepa.directdebit.util.SepaUtil;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import eu.rbecker.jsepa.directdebit.util.SepaUtil;
+import eu.rbecker.jsepa.directdebit.util.SepaValidationException;
+import eu.rbecker.jsepa.sanitization.SepaStringSanitizer;
 
 /**
  *
@@ -16,6 +17,8 @@ import java.util.Date;
 public class DirectDebitPayment {
 
     private BigDecimal paymentSum;
+
+    private String  paymentCurrency;
 
     private String debitorIban;
 
@@ -45,6 +48,18 @@ public class DirectDebitPayment {
 
     public void setPaymentSum(BigDecimal paymentSum) {
         this.paymentSum = paymentSum.setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public String getPaymentCurrency() {
+        // fallback to EUR
+        if(paymentCurrency == null) {
+            paymentCurrency = "EUR";
+        }
+        return paymentCurrency;
+    }
+
+    public void setPaymentCurrency(String paymentCurrency) {
+        this.paymentCurrency = paymentCurrency;
     }
 
     public String getDebitorIban() {

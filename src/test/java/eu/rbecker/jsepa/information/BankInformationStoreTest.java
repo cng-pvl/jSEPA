@@ -23,15 +23,16 @@
  */
 package eu.rbecker.jsepa.information;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  *
  * @author Robert Becker <robert at rbecker.eu>
  */
 public class BankInformationStoreTest {
-    
+
     public BankInformationStoreTest() {
     }
 
@@ -68,5 +69,5 @@ public class BankInformationStoreTest {
     public void testGetCacheForCountryCode() {
         assertEquals("de", BankInformationStore.getCacheForIban("de").getCountryCode());
     }
-    
+
 }
