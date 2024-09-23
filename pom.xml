@@ -29,9 +29,11 @@
         <!-- *** using current LTS: Java 21 since September 2023 -->
         <!-- https://www.oracle.com/de/java/technologies/java-se-support-roadmap.html -->
         <!-- `java.version` is a spring boot option (and does therefore not work within this project) -->
-        <java.version>21</java.version>
+        <java.version>11</java.version>
         <!-- without spring boot we have to use: `maven.compiler.release`  -->
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.release>11</maven.compiler.release>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
