@@ -121,8 +121,7 @@
             <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <!-- After adding testcontainers dependency this has to be up to date >= 3.0.0-M5 -->
-                <version>3.5.0</version>
+                <version>3.2.5</version>
                 <configuration>
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
                 </configuration>
