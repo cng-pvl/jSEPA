@@ -10,6 +10,8 @@ There is no national bank database lookup for IBAN and BIC validation, as that c
 
 Provides IBAN/BIC based bank information lookup for german banks using data provided by the Bundesbank. This also enables IBAN to BIC conversation.
 
+[![](https://jitpack.io/v/com.github.lade/jsepa.svg)](https://jitpack.io/#com.github.lade/jsepa)
+
 ## License
 
 The MIT License
