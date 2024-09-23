@@ -25,7 +25,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.min.version>3.9</maven.min.version>
+        <maven.min.version>3.6</maven.min.version>
         <!-- *** using current LTS: Java 21 since September 2023 -->
         <!-- https://www.oracle.com/de/java/technologies/java-se-support-roadmap.html -->
         <!-- `java.version` is a spring boot option (and does therefore not work within this project) -->
@@ -152,9 +152,10 @@
             
             <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/jaxb2-maven-plugin -->
             <plugin>
+                <!-- *** 3.2.0 seems to be not compatible with jitpack.io-->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>xjc-eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02</id>
