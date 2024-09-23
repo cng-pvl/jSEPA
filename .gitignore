@@ -42,5 +42,5 @@ yarn.lock
 
 /nbproject/
 /dist/
-/src/main/resources/bankdata.*
+#/src/main/resources/bankdata.*
 
