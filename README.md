@@ -1,12 +1,13 @@
 # Changelog
 Changes compared to [forked version](https://github.com/nr23730/jSEPA). 
 
+* First implementation of `PAIN.008.001.08` (`DirectDebitDocumentData.toXml08();` (untested / work in progress)
 * Currency support added (`EUR` was hard coded in XML)
 * Slightly changed and updated pom.xml
 * Prepared to release via jitpack.io
     * Pushed bankdata file
-    * Downgraded to Java 11 (from 21) (21 not supported at jitpack.io)
-    * Downgraded plugins due to Maven Version at jitpack: 3.6.3
+    * Downgraded to Java 11 again (from 21) (21 not supported at jitpack.io)
+    * Downgraded plugins again due to Maven Version at jitpack: 3.6.3
         * maven-surefire-plugin
         * exec-maven-plugin
 

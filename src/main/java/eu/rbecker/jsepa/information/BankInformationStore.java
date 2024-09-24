@@ -41,11 +41,11 @@ public class BankInformationStore implements Serializable {
     public static BankInformation forIban(String iban) {
         return getCacheForIban(iban).findByIban(iban);
     }
-    
+
     public static BankInformation forBankCode(String countryCode, String bankCode) {
         return getCacheForCountryCode(countryCode).findByBankCode(bankCode);
     }
-    
+
     public static BankInformationCache getCacheForIban(String iban) {
         String countryCode = iban.substring(0, 2);
         return getCacheForCountryCode(countryCode);
@@ -57,20 +57,18 @@ public class BankInformationStore implements Serializable {
         if (result != null) {
             return result;
         }
-        result = createCache(countryCode, result);
+        result = createCache(countryCode);
         return result;
     }
 
-    private static BankInformationCache createCache(String countryCode, BankInformationCache result) throws IllegalArgumentException {
-        switch (countryCode) {
-            case "de":
-                result = new BankInformationCache(countryCode, new GermanBankInformationProvider().provide());
-                break;
-            default:
-                throw new IllegalArgumentException("No bank data lookup implemented for country code " + countryCode);
+    private static BankInformationCache createCache(String countryCode) throws IllegalArgumentException {
+        if(countryCode != null && countryCode.equals("de")) {
+            CACHES.put(countryCode, new BankInformationCache(countryCode, new GermanBankInformationProvider().provide()));
         }
-        CACHES.put(countryCode, result);
-        return result;
+        else {
+            throw new IllegalArgumentException("No bank data lookup implemented for country code " + countryCode);
+        }
+        return CACHES.get(countryCode);
     }
 
 }

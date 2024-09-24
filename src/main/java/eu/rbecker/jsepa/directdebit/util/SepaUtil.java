@@ -3,15 +3,22 @@
  */
 package eu.rbecker.jsepa.directdebit.util;
 
-import eu.rbecker.jsepa.validation.BicValidator;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import org.apache.commons.validator.routines.IBANValidator;
+
+import eu.rbecker.jsepa.validation.BicValidator;
 
 /**
  *
  * @author Robert Becker <robert at rbecker.eu>
  */
 public class SepaUtil {
+
+    private SepaUtil() {
+        // ** Add a private constructor to hide the implicit public one
+    }
 
     public static void validateIban(String iban) throws SepaValidationException {
         if (!IBANValidator.getInstance().isValid(iban)) {
@@ -26,6 +33,7 @@ public class SepaUtil {
     }
 
     public static BigDecimal floatToBigInt2Digit(float f) {
-        return new BigDecimal(f).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return BigDecimal.valueOf(f).setScale(2, RoundingMode.HALF_UP);
     }
+
 }

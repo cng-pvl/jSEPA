@@ -169,6 +169,19 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>xjc-eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_08</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/xsd/pain.008.001.08.xsd</source>
+                            </sources>
+                            <packageName>eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_08</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>xjc-eu.rbecker.jsepa.directdebit.xml.schema.pain_001_003_03</id>
                         <goals>
                             <goal>xjc</goal>

@@ -11,8 +11,8 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.BranchAndFinancialInstitutionIdentification4;
-import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_02.FinancialInstitutionIdentification7;
+import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_08.BranchAndFinancialInstitutionIdentification6;
+import eu.rbecker.jsepa.directdebit.xml.schema.pain_008_001_08.FinancialInstitutionIdentification18;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
@@ -22,7 +22,7 @@ import jakarta.xml.bind.Marshaller;
  *
  * @author Robert Becker <robert at rbecker.eu>
  */
-public abstract class SepaXmlDocumentBuilder implements Serializable {
+public abstract class SepaXmlDocumentBuilder08 implements Serializable {
 
     protected static final long serialVersionUID = 1L;
 
@@ -85,10 +85,10 @@ public abstract class SepaXmlDocumentBuilder implements Serializable {
         }
     }
 
-    protected static BranchAndFinancialInstitutionIdentification4 bicToBranchAndFinancialInstitutionIdentification(String bic) {
-        BranchAndFinancialInstitutionIdentification4 result = new BranchAndFinancialInstitutionIdentification4();
-        result.setFinInstnId(new FinancialInstitutionIdentification7());
-        result.getFinInstnId().setBIC(bic);
+    protected static BranchAndFinancialInstitutionIdentification6 bicToBranchAndFinancialInstitutionIdentification(String bic) {
+        BranchAndFinancialInstitutionIdentification6 result = new BranchAndFinancialInstitutionIdentification6();
+        result.setFinInstnId(new FinancialInstitutionIdentification18());
+        result.getFinInstnId().setBICFI(bic);
         return result;
     }
 

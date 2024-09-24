@@ -3,6 +3,11 @@
  */
 package eu.rbecker.jsepa.transfer;
 
+import java.io.StringWriter;
+import java.util.Calendar;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+
 import eu.rbecker.jsepa.directdebit.util.SepaXmlDocumentBuilder;
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_001_003_03.AccountIdentificationSEPA;
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_001_003_03.ActiveOrHistoricCurrencyAndAmountSEPA;
@@ -28,15 +33,14 @@ import eu.rbecker.jsepa.directdebit.xml.schema.pain_001_003_03.PaymentMethodSCTC
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_001_003_03.PaymentTypeInformationSCT1;
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_001_003_03.RemittanceInformationSEPA1Choice;
 import eu.rbecker.jsepa.directdebit.xml.schema.pain_001_003_03.ServiceLevelSEPA;
-import java.io.StringWriter;
-import java.util.GregorianCalendar;
-import javax.xml.datatype.DatatypeConfigurationException;
 
 /**
  *
  * @author Robert Becker <robert at rbecker.eu>
  */
 class SepaTransferDocumentBuilder extends SepaXmlDocumentBuilder {
+
+    private static final long serialVersionUID = 1L;
 
     public static String toXml(SepaTransferDocumentData source) throws DatatypeConfigurationException {
         Document doc = new Document();
@@ -52,13 +56,13 @@ class SepaTransferDocumentBuilder extends SepaXmlDocumentBuilder {
         return resultWriter.toString();
     }
 
-    private static GroupHeaderSCT createGroupHeaderSdd(SepaTransferDocumentData data) throws DatatypeConfigurationException {
+    private static GroupHeaderSCT createGroupHeaderSdd(SepaTransferDocumentData data) {
         GroupHeaderSCT result = new GroupHeaderSCT();
         // message id
         result.setMsgId(data.getDocumentMessageId());
 
         // created on
-        result.setCreDtTm(calendarToXmlGregorianCalendarDateTime(GregorianCalendar.getInstance()));
+        result.setCreDtTm(calendarToXmlGregorianCalendarDateTime(Calendar.getInstance()));
 
         // number of tx
         result.setNbOfTxs(String.valueOf(data.getPayments().size()));
@@ -75,7 +79,7 @@ class SepaTransferDocumentBuilder extends SepaXmlDocumentBuilder {
         return result;
     }
 
-    private static PaymentInstructionInformationSCT createPaymentInstructions(SepaTransferDocumentData data) throws DatatypeConfigurationException {
+    private static PaymentInstructionInformationSCT createPaymentInstructions(SepaTransferDocumentData data) {
         PaymentInstructionInformationSCT result = new PaymentInstructionInformationSCT();
         result.setBtchBookg(data.isBatchBooking());
         result.setChrgBr(ChargeBearerTypeSEPACode.SLEV);
@@ -138,7 +142,7 @@ class SepaTransferDocumentBuilder extends SepaXmlDocumentBuilder {
         setPayeeIbanAndBic(p, result);
         setEndToEndId(p, result);
         setReasonForPayment(p, result);
-        
+
         return result;
     }
 
@@ -176,7 +180,7 @@ class SepaTransferDocumentBuilder extends SepaXmlDocumentBuilder {
         ai.setIBAN(p.getPayeeIban());
         ca.setId(ai);
         ctti.setCdtrAcct(ca);
-        
+
         BranchAndFinancialInstitutionIdentificationSEPA1 bafiis = new BranchAndFinancialInstitutionIdentificationSEPA1();
         FinancialInstitutionIdentificationSEPA1 fii = new FinancialInstitutionIdentificationSEPA1();
         fii.setBIC(p.getPayeeBic());

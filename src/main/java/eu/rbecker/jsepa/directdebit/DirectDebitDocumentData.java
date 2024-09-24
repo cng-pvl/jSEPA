@@ -1,15 +1,15 @@
 package eu.rbecker.jsepa.directdebit;
 
-import eu.rbecker.jsepa.directdebit.util.SepaValidationException;
-import eu.rbecker.jsepa.sanitization.SepaStringSanitizer;
-import eu.rbecker.jsepa.directdebit.util.SepaUtil;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.xml.datatype.DatatypeConfigurationException;
+
+import eu.rbecker.jsepa.directdebit.util.SepaUtil;
+import eu.rbecker.jsepa.directdebit.util.SepaValidationException;
+import eu.rbecker.jsepa.sanitization.SepaStringSanitizer;
 
 /**
  *
@@ -29,14 +29,30 @@ public class DirectDebitDocumentData {
 
     private final List<DirectDebitPayment> payments = new ArrayList<>();
 
-    public String toXml() throws DatatypeConfigurationException {
+    /**
+     * @return XML according to pain_008_001_02
+     */
+    public String toXml() {
         return DirectDebitDocumentBuilder.toXml(this);
     }
 
-    public DirectDebitDocumentData() {
+    /**
+     * @return XML according to pain_008_001_08
+     */
+    public String toXml08() {
+        return DirectDebitDocumentBuilder08.toXml(this);
     }
-    
-    public DirectDebitDocumentData(String creditorBic, String creditorIban, String creditorCreditorIdentifier, String creditorName, String documentMessageId) throws SepaValidationException {
+
+
+    public DirectDebitDocumentData() {
+        // *** do nothing
+    }
+
+    public DirectDebitDocumentData(String creditorBic,
+                                   String creditorIban,
+                                   String creditorCreditorIdentifier,
+                                   String creditorName,
+                                   String documentMessageId) throws SepaValidationException {
         setCreditorBic(creditorBic);
         setCreditorIban(creditorIban);
         setCreditorIdentifier(creditorCreditorIdentifier);

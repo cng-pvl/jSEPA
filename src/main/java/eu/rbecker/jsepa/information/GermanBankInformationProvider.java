@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -35,8 +36,6 @@ import java.util.stream.Collectors;
  * @author Robert Becker <robert at rbecker.eu>
  */
 public class GermanBankInformationProvider implements BankInformationProvider {
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * From https://www.bundesbank.de/Redaktion/DE/Downloads/Aufgaben/Unbarer_Zahlungsverkehr/Bankleitzahlen/merkblatt_bankleitzahlendatei.pdf?__blob=publicationFile
@@ -60,6 +59,7 @@ public class GermanBankInformationProvider implements BankInformationProvider {
     public static final String BANK_DATA_FILE_NAME = "bankdata.de.txt";
 
     public GermanBankInformationProvider() {
+        // *** do nothing
     }
 
     @Override
@@ -67,8 +67,8 @@ public class GermanBankInformationProvider implements BankInformationProvider {
         try (InputStream in = this.getClass().getResourceAsStream("/" + BANK_DATA_FILE_NAME)) {
             return new BufferedReader(new InputStreamReader(in))
                 .lines()
-                .map(l -> parseLine(l))
-                .filter(bi -> bi != null)
+                .map(this::parseLine)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
         } catch (IOException ex) {
             // If this crashes, the library (build) is broken.
@@ -86,12 +86,11 @@ public class GermanBankInformationProvider implements BankInformationProvider {
         String name = l.substring(9, 67).trim();
         String shortName = l.substring(107, 134).trim();
         int beginBic = 139;
-        while ((l.charAt(beginBic) + "").matches("[0-9]")) {
+        while ((l.charAt(beginBic) + "").matches("\\d")) {
             beginBic++;
         }
         String bic = l.substring(beginBic, beginBic + 11).trim();
-        BankInformation bi = new BankInformation(name, shortName, code, bic);
-        return bi;
+        return new BankInformation(name, shortName, code, bic);
     }
 
 }
