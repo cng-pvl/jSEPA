@@ -1,3 +1,17 @@
+# Changelog
+Changes compared to [forked version](https://github.com/nr23730/jSEPA). 
+
+* Currency support added (`EUR` was hard coded in XML)
+* Slightly changed and updated pom.xml
+* Prepared to release via jitpack.io
+    * Pushed bankdata file
+    * Downgraded to Java 11 (from 21) (21 not supported at jitpack.io)
+    * Downgraded plugins due to Maven Version at jitpack: 3.6.3
+        * maven-surefire-plugin
+        * exec-maven-plugin
+
+[![](https://jitpack.io/v/com.github.cng-pvl/jSEPA.svg)](https://jitpack.io/#com.github.cng-pvl/jSEPA)
+
 # jSEPA
 
 A java library to create valid PAIN.008.001.02 (v3.1) SEPA direct debit and PAIN.001.003.03 SEPA transfer XML documents using CORE and pain.001.003.03 SEPA transfer XML documents.
@@ -9,8 +23,6 @@ Includes IBAN validation by apache commons and a regular expression based valida
 There is no national bank database lookup for IBAN and BIC validation, as that caused more harm than good in the past.
 
 Provides IBAN/BIC based bank information lookup for german banks using data provided by the Bundesbank. This also enables IBAN to BIC conversation.
-
-[![](https://jitpack.io/v/com.github.cng-pvl/jSEPA.svg)](https://jitpack.io/#com.github.cng-pvl/jSEPA)
 
 ## License
 
