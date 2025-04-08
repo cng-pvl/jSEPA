@@ -55,7 +55,7 @@ public class BankDataFileUpdater implements Serializable {
 
     private static final String DE_BANK_DATA_INDEX_URL = DE_BANK_DATA_HOST + "/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/bankleitzahlen/download---bankleitzahlen-602592";
 
-    private static final Pattern DE_BANK_FILE_REGEXP = Pattern.compile("href=\"(/resource/blob/[0-9]+/[a-z0-9]+/mL/blz-aktuell-txt-data.txt)\"");
+    private static final Pattern DE_BANK_FILE_REGEXP = Pattern.compile("href=\"(/resource/blob/[0-9]+/[a-z0-9]+/[A-Z0-9]+/blz-aktuell-txt-data.txt)\"");
     
     private static final long FILE_MAX_AGE_MS = 1000 * 60 * 60 * 24 * 7; // 1 week
 
