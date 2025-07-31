@@ -25,10 +25,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.min.version>3.6</maven.min.version>
+        <maven.min.version>3.9</maven.min.version>
         <!-- *** using current LTS: Java 21 since September 2023 -->
         <!-- https://www.oracle.com/de/java/technologies/java-se-support-roadmap.html -->
         <!-- `java.version` is a spring boot option (and does therefore not work within this project) -->
+        <!-- Supporting Java 21 at jitpack -->
+        <!-- https://github.com/jitpack/jitpack.io/issues/6479 -->
         <java.version>21</java.version>
         <!-- without spring boot we have to use: `maven.compiler.release`  -->
         <maven.compiler.release>21</maven.compiler.release>

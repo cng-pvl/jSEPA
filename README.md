@@ -6,7 +6,7 @@ Changes compared to [forked version](https://github.com/nr23730/jSEPA).
 * Slightly changed and updated pom.xml
 * Prepared to release via jitpack.io
     * Pushed bankdata file
-    * Downgraded to Java 11 again (from 21) (21 not supported at jitpack.io)
+    * Added file `jitpack.yml` to [support Java 21](https://github.com/jitpack/jitpack.io/issues/6479)
     * Downgraded plugins again due to Maven Version at jitpack: 3.6.3
         * maven-surefire-plugin
         * exec-maven-plugin
