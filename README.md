@@ -6,7 +6,7 @@ Changes compared to [forked version](https://github.com/nr23730/jSEPA).
 * Slightly changed and updated pom.xml
 * Prepared to release via jitpack.io
     * Pushed bankdata file
-    * Added file `jitpack.yml` to [support Java 21](https://github.com/jitpack/jitpack.io/issues/6479)
+    * Added file `jitpack.yml` to [support Java 25](https://github.com/jitpack/jitpack.io/issues/6479)
     * Added maven wrapper to support Maven 3.9 (`mvn wrapper:wrapper`)
 
 [![](https://jitpack.io/v/com.github.cng-pvl/jSEPA.svg)](https://jitpack.io/#com.github.cng-pvl/jSEPA)
